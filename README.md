@@ -37,11 +37,10 @@ Las siguientes instrucciones le permitirán descargar una copia y ejecutar la ap
 - Git
 
 1. Ubíquese sobre el directorio donde desea realizar la descarga y ejecute el siguiente comando:
-   ```shell script
+```shell script
   git clone https://github.com/juliandtrianar/lab7-AREP.git
 ```
 2. Navegue al directorio del proyecto:
-
 ```shell script
   cd lab7-AREP
 ```
