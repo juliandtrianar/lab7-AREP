@@ -77,6 +77,10 @@ De clic en el botón `Postear`,  podrá observar que los mensajes se muestran en
 ![image](https://github.com/user-attachments/assets/154ad52c-7f07-4e0e-8bd2-17388a43d4b0)
 
 
+## Video de la aplicacion desplegada y funcionando
+
+https://youtu.be/ys2xsuERCPc
+
 ## Autores
 
 - Julián David Triana Roa
