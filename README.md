@@ -76,6 +76,57 @@ Ingrese la mensaje a postear:
 De clic en el botón `Postear`,  podrá observar que los mensajes se muestran en la parte inferior.
 ![image](https://github.com/user-attachments/assets/154ad52c-7f07-4e0e-8bd2-17388a43d4b0)
 
+# Despliegue en Amazon Web Services
+
+A continuación, se describe la arquitectura de la aplicación en Amazon Web Services (AWS). La aplicación se despliega en la infraestructura de la nube de AWS para garantizar escalabilidad, disponibilidad y seguridad.
+
+## Arquitectura
+
+![image](https://github.com/user-attachments/assets/a21fa032-da64-4028-8af9-b41b22664249)
+
+## Funciones Lambda
+
+Se desplegaron dos microservicios utilizando funciones Lambda de AWS. Estos microservicios establecen conexión con una base de datos `MongoDB` para almacenar y gestionar los datos de la aplicación.
+Para cada uno de los microservicios, se compiló el proyecto ubicado en la rama `cloud` del repositorio para generar un JAR con todas las dependencias necesarias para su despliegue en AWS Lambda.
+
+`post-function`: Esta función Lambda implementa la lógica para almacenar los posts en la base de datos `MongoDB`. Cuando se invoca, recibe un nuevo post como entrada y lo guarda en la base de datos para su posterior recuperación y visualización. Es responsable de asegurar que los posts enviados por los usuarios se almacenen correctamente en la base de datos para su uso posterior. Se mapeó el método `savePost` de la clase `PostController` para este microservicio.
+
+`stream-function`: Esta función Lambda se encarga de proporcionar información sobre los posts almacenados en la base de datos MongoDB. Se mapeó el método `getPosts` de la clase `StreamController` para este microservicio. Al ser invocado, este método recupera los posts de la base de datos y los devuelve como respuesta al cliente que realizó la solicitud.
+
+El uso de funciones Lambda de AWS permite una arquitectura sin servidor, escalable y de alto rendimiento.
+
+
+
+## Amazon S3
+
+Utilizamos Amazon S3 para almacenar nuestros archivos estáticos, como HTML, CSS y JavaScript. Esto nos permite distribuir y servir estos archivos de manera eficiente a través de internet para nuestra aplicación web. Creamos un bucket para nuestra aplicación:
+
+
+## Amazon Cognito
+
+En nuestra aplicación, utilizamos Amazon Cognito para gestionar la autenticación de usuarios antes de que accedan al sitio web estático alojado en Amazon S3. Cuando un usuario intenta acceder al sitio web, lo redirigimos a una página de inicio de sesión vinculada a Amazon Cognito. Allí, el usuario proporciona sus credenciales de inicio de sesión y Amazon Cognito valida estas credenciales. Si son válidas, el usuario recibe un token de acceso que lo identifica. Con este token, el usuario es redirigido de vuelta al sitio web estático, donde el token se utiliza para validar su acceso y permitirle interactuar con la aplicación web estática de acuerdo con sus permisos. 
+
+Luego de autenticarse en un portal integrado por este servicio, se realiza la redirección al sitio web estatico enviando un token JWT en la URL del mismo.
+
+
+
+Dicho token es esencial para poder consumir los servicios del back (endpoints del API Gateway). Para consultarlo desde la URL se ha modificado el JavaScript para que lea la URL, extraiga este token y lo almacene de tal forma que lo use cada vez que se consulten los servicios del back.
+
+Con esto se asegura que solo aquellos agentes autorizados sean capaces de consumir los servicios de la solución.
+
+## API Gateway 
+
+En nuestra aplicación, hemos configurado el Gateway de API de AWS para actuar como el punto de entrada principal.
+
+
+Al definir recursos y métodos dentro de nuestra API, hemos establecido la estructura y el comportamiento de la interfaz que nuestra aplicación ofrece a los usuarios. Luego, hemos asignado nuestras funciones Lambda específicas para manejar estas solicitudes entrantes, asegurándonos de que cada solicitud se dirija al código adecuado para su procesamiento. 
+
+Seguridad de los endpoints:
+
+![image](https://github.com/user-attachments/assets/9e9f9416-4628-45ad-96c9-aa4b2c75f06f)
+
+![image](https://github.com/user-attachments/assets/73ff8759-e38b-4b2f-944e-fa6fc69642a5)
+
 
 ## Video de la aplicacion desplegada y funcionando
 
