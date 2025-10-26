@@ -7,14 +7,33 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<div id="auth-section">
+    <h2>Not Twitter - Iniciar Sesión</h2>
+    <p>Para usar Not Twitter, inicia sesión con tu cuenta</p>
+    <button id="login-btn">Iniciar Sesión con Cognito</button>
+</div>
+<div id="app-section" style="display:none;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Not Twitter</h2>
+        <div>
+            <span id="user-info">Usuario</span>
+            <button id="logout-btn">Cerrar Sesión</button>
+        </div>
+    </div>
+
     <div class="container">
         <div class="post-box">
-            <textarea id="post-text" placeholder="Escribe tu post aquí..."></textarea>
-            <button id="post-button">Postear</button>
+                <textarea id="post-text" placeholder="¿Qué está pasando? (máximo 140 caracteres)"
+                          maxlength="140"></textarea>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="char-count">0/140</span>
+                <button id="post-button">Postear</button>
+            </div>
         </div>
         <div id="post-list"></div>
     </div>
+</div>
 
-    <script src="js/scripts.js"></script>
+<script src="js/scripts.js"></script>
 </body>
 </html>

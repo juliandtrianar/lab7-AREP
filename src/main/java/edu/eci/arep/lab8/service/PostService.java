@@ -16,16 +16,13 @@ public class PostService {
         this.stream = new Stream();
     }
 
-
-    public List<Post> getPosts(){
-        System.out.println("Get");
-        System.out.println(stream.getPosts().toString());
-        return stream.getPosts();
+    public List<Post> getPosts(){;
+        List<Post> posts = stream.getPosts();
+        return posts;
     }
 
     public Post savePost(Post post){
-        System.out.println("Save");
-        System.out.println(stream.getPosts().toString());
-        return stream.add(post);
+        Post saved = stream.add(post);
+        return saved;
     }
 }

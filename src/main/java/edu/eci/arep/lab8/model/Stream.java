@@ -1,15 +1,13 @@
 package edu.eci.arep.lab8.model;
 
-import org.jboss.logging.annotations.Pos;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Stream {
+    private static ArrayList<Post> posts = new ArrayList<Post>();
 
-    public Stream(){}
-
-    private ArrayList<Post> posts = new ArrayList<Post>();
+    public Stream(){
+    }
 
     public Post add(Post post){
         posts.add(post);
@@ -17,12 +15,6 @@ public class Stream {
     }
 
     public ArrayList<Post> getPosts() {
-        return posts;
+        return new ArrayList<>(posts);
     }
-
-    public void setPosts(ArrayList<Post> posts) {
-        this.posts = posts;
-    }
-
-
 }

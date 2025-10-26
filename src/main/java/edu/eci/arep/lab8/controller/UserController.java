@@ -40,7 +40,4 @@ public class UserController {
         User user = userService.saveUser(newUser);
         return Response.ok(user).build();
     }
-
-
-
 }

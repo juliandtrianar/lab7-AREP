@@ -22,6 +22,4 @@ public class PostController {
         postService.savePost(post);
         return Response.status(201).build();
     }
-
-
 }
